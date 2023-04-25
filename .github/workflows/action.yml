@@ -26,7 +26,7 @@ jobs:
       - name: Update languages
         id: update
         run: |
-          MIRAGE_KEY=${{ secrets.MIRAGE_KEY }} npm run update
+          MIRAGE_IDENTIFIER=${{ secrets.MIRAGE_IDENTIFIER }} MIRAGE_KEY=${{ secrets.MIRAGE_KEY }} npm run update
 
       - name: Test
         id: test
