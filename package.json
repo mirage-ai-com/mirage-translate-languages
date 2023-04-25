@@ -1,0 +1,45 @@
+{
+  "name": "mirage-translate-languages",
+  "description": "Maps supported languages by the Mirage Translate API.",
+  "version": "1.0.0",
+  "homepage": "https://github.com/mirage-ai-com/mirage-translate-languages",
+  "license": "MIT",
+  "author": {
+    "name": "Eliott Vincent",
+    "email": "dev@eliottvincent.com",
+    "url": "https://eliottvincent.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mirage-ai-com/mirage-translate-languages.git"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/mirage-ai-com/mirage-translate-languages/blob/master/LICENSE"
+    }
+  ],
+  "main": "src/index.js",
+  "engines": {
+    "node": ">= 4.0.0"
+  },
+  "scripts": {
+    "bump_version": "node ./res/scripts/bump_version.js",
+    "release": "./res/scripts/release.sh",
+    "test": "nodeunit ./test/index.js",
+    "update": "node ./res/scripts/update.js"
+  },
+  "devDependencies": {
+    "nodeunit-x": "0.14.0"
+  },
+  "keywords": [
+    "mirage",
+    "translate",
+    "translation",
+    "language",
+    "languages",
+    "language-list",
+    "BCP 47",
+    "ISO 3166-1"
+  ]
+}
