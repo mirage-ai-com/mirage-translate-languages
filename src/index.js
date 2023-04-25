@@ -31,9 +31,7 @@ var isLanguageSupported = function(code) {
     return false;
   }
 
-  var _language = data.languages.find((language) => {
-    return language.language === code.toLowerCase();
-  });
+  var _language = data.languages[code.toLowerCase()];
 
   return !!_language;
 };
