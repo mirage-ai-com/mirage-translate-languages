@@ -1,7 +1,7 @@
 {
   "name": "mirage-translate-languages",
   "description": "Maps supported languages by the Mirage Translate API.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "homepage": "https://github.com/mirage-ai-com/mirage-translate-languages",
   "license": "MIT",
   "author": {
