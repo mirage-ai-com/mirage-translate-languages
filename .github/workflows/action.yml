@@ -1,28 +1,32 @@
 name: Release
+
 on:
   schedule:
     - cron: "25 9 */3 * *"
+
 permissions:
   id-token: write
   contents: write
+
 jobs:
   release:
     name: Updates languages, releases a new version if needed
-    runs-on: ubuntu-20.04
-    steps:
-      - name: Checkout
-        id: checkout
-        uses: actions/checkout@v2
+    runs-on: ubuntu-latest
 
-      - name: Install Node
-        id: install_node
-        uses: actions/setup-node@v2
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install NodeJS
+        uses: actions/setup-node@v4
         with:
-          node-version: "24"
-          registry-url: "https://registry.npmjs.org"
+          node-version: 24.x
+          registry-url: https://registry.npmjs.org
+
+      - name: Verify versions
+        run: node --version && npm --version && node -p process.versions.v8
 
       - name: Install dependencies
-        id: install_dependencies
         run: |
           npm install
 
@@ -31,26 +35,22 @@ jobs:
         run: |
           MIRAGE_IDENTIFIER=${{ secrets.MIRAGE_IDENTIFIER }} MIRAGE_KEY=${{ secrets.MIRAGE_KEY }} npm run update
 
-      - name: Test
-        id: test
+      - name: Run tests
         if: ${{ steps.update.outputs.status == 'updated' }}
         run: |
           npm run test
 
       - name: Bump version
-        id: bump_version
         if: ${{ steps.update.outputs.status == 'updated' }}
         run: |
           npm run bump_version
 
-      - name: Release
-        id: release
+      - name: Release update
         if: ${{ steps.update.outputs.status == 'updated' }}
         run: |
           npm run release
 
-      - name: Publish
-        id: publish
+      - name: Publish package
         if: ${{ steps.update.outputs.status == 'updated' }}
         run: |
           npm publish --provenance
